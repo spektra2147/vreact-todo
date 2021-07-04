@@ -1,19 +1,33 @@
 import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from "@material-ui/core/ListSubheader";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
 
 const TodoList = (props) => {
     return (
-        <div>
-            <ul className="list-group">
-                {props.todos.map((todo) => (
-                <li className="list-group-item d-flex align-items-center justify-content-between" key={todo.id}>
-                    <span>{todo.text}</span>
-                    <span className="badge ml-auto">
-						  <button onClick={(event) => props.deleteTodoProp(todo)} className="btn btn-danger  btn-sm">&times;</button>
-                    </span>
-                </li>
-                ))}
-            </ul>
-        </div>
+        <List
+            component="nav"
+            aria-labelledby="nested-list-subheader"
+            subheader={
+                <ListSubheader component="div" id="nested-list-subheader">
+                    My Todo List
+                </ListSubheader>
+            }>
+            {props.todos.map((todo) => (
+                <ListItem>
+                    <ListItemText primary={todo.text} />
+                    <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="delete">
+                            <DeleteIcon onClick={(event) => props.deleteTodoProp(todo)}/>
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
+            ))}
+        </List>
     )
 }
 

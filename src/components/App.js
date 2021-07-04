@@ -2,7 +2,9 @@ import React from 'react';
 import TodoList from './TodoList';
 import Input from './Input';
 import serialize from 'form-serialize';
-
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 
 class App extends React.Component {
     state = {
@@ -49,19 +51,19 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="container py-2">
-                <div className="row justify-content-center">
-                    <div className="col-md-5">
+            <Container fixed component="div">
+                <Box component="div" display="flex" justifyContent="center" flexDirection="row">
+                    <Box component="div" width={3/8}>
                         <div id="app">
-                            <h1 className="text-center mb-3">My Todo List React</h1>
+                            <Typography variant="h3">My Todo List React</Typography>
                             <Input handleFormSubmitProp={this.handleFormSubmit}/>
                             <TodoList
                                 todos={this.state.todos}
                                 deleteTodoProp={this.deleteTodo}/>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </Box>
+                </Box>
+            </Container>
         );
     }
 }
